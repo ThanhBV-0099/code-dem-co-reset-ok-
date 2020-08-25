@@ -30,18 +30,16 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 volatile uint16_t dem;
-uint16_t t=0,t1=0,t2=0,i,a=0;
+uint16_t t=0,t1=0,t2=0,i;
 uint16_t vao=0,ra=0;
-uint16_t t3=0,phanbiet=0,phanbiet1=0,lap=0,run=0;
+uint16_t t3=0,phanbiet=0,lap=0;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 #define GPIO_PIN_RESET 0
 #define GPIO_PIN_SET 1
-#define  out_pin4(x) HAL_GPIO_WritePin (GPIOA, GPIO_PIN_4, x);
-//#define in_pin6 HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_6);
-#define daott4 HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4);
+#define out_pin4(x) HAL_GPIO_WritePin (GPIOA, GPIO_PIN_4, x);
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -61,53 +59,12 @@ void SystemClock_Config(void);
 void SystemClock_Config(void);
 void sensor_init(void);
 void sosanh();
-void kiemtranutnhan();
-void docnn();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void kiemtranutnhan()
-{
-		//dem=0;
-//		lap=0;
-	if(vao==ra || vao>ra || vao<ra)
-	{
-	if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_6) == 0 ) 
-	//while(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_6) == 1 ) ;
-  {
-		dem=0;
-		do
-			{
-			dem++;
-			HAL_Delay(50);	
-			}
-			while((dem<5)&& (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_6) == 0 ));
-		 if(dem>=5)
-		 {
-			 vao=ra=0;
-			 dem=0;
-			for(i=0;i<10;i++)
-			{
-			HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-			HAL_Delay(10);
-			}
-			
-			while(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_6) == 0 );
-		}
-		 else 
-		 {
-				dem=0;
-			 
-		 }
-//			break;
-//		//	 HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4);
-//}
-}
-	}
-}
-	
-	void sensor_init(void)
+
+void sensor_init(void)
 {
 	//kiemtranutnhan();
 	  if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_2)== 0 && t1==0) // if the pin is HIGH 
@@ -292,9 +249,7 @@ HAL_GPIO_WritePin (GPIOC, GPIO_PIN_13, 1);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-			//	kiemtranutnhan();
 		sensor_init();
-		//kiemtranutnhan();
 		sosanh();
 		
 		
